@@ -8,14 +8,26 @@ class Solution
     static void Main(String[] args)
     {
         int n = Convert.ToInt32(Console.ReadLine());
-        string[] arr_temp = Console.ReadLine().Split(' ');
-        int[] arr = Array.ConvertAll(arr_temp, Int32.Parse);
-        long sum = 0;
-        for (int i = 0; i < arr.Length; i++)
+        string[] height_temp = Console.ReadLine().Split(' ');
+        int[] height = Array.ConvertAll(height_temp, Int32.Parse);
+        int noOfCandles = 1;
+        Array.Sort(height);
+
+        for (int i = height.Length; i > 0; i--)
         {
-            sum += arr[i];
+            if (i > 1)
+            {
+                if (height[i - 1] > height[i - 2])
+                {
+                    break;
+                }
+                if (height[i - 1] == height[i - 2])
+                {
+                    noOfCandles += 1;
+                }
+            }
         }
-        Console.WriteLine(sum);
+        Console.WriteLine(noOfCandles);
         Console.ReadKey();
     }
 }
